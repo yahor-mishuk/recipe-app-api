@@ -3,6 +3,7 @@ Test for models
 """
 from decimal import Decimal
 from unittest.mock import patch
+
 from core import models
 from django.contrib.auth import get_user_model
 from django.test import TestCase
@@ -70,7 +71,9 @@ class ModelTests(TestCase):
 
     def test_create_ingredient(self):
         user = create_user()
-        ingredient = models.Ingredient.objects.create(user=user, name='Ingredient1')
+        ingredient = models.Ingredient.objects.create(
+            user=user, name='Ingredient1'
+        )
         self.assertEqual(str(ingredient), ingredient.name)
 
     @patch('core.models.uuid.uuid4')
